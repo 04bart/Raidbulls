@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAIDBULLS RUGBY CLUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #0b3d0b;
+            --secondary-green: #1a7a1a;
+            --accent-gold: #ffd700;
+            --dark-bg: rgba(0,0,0,0.2);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-green);
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #0d5c0d, var(--secondary-green));
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            width: 45%;
+            margin: 15px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .full-width {
+            width: 95%;
+        }
+
+        h2 {
+            color: var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+        }
+
+        .mascot-logo {
+            max-width: 200px;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));
+        }
+
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .player-card {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: scale(1.05);
+            background: rgba(0,0,0,0.3);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        .player-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 10px;
+            border: 1px solid var(--accent-gold);
+            text-align: left;
+        }
+
+        .schedule-table th {
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .schedule-table tr:hover {
+            background-color: rgba(255,215,0,0.1);
+        }
+
+        .motto {
+            text-align: center;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-top: 10px;
+            color: var(--accent-gold);
+        }
+
+        .news-item {
+            background: rgba(255,215,0,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .news-item h3 {
+            color: var(--accent-gold);
+            margin-top: 0;
+        }
+
+        .news-item img {
+            margin-bottom: 10px;
+        }
+
+        .stats-highlight {
+            display: inline-block;
+            background: rgba(255,215,0,0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                width: 95%;
+            }
+
+            .player-grid, .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RAIDBULLS RUGBY CLUB</h1>
+    </header>
+
+    <div class="container">
+        <div class="section full-width" style="text-align:center;">
+            <img src="images/mascot.jpg" alt="RAIDBULLS Bull Mascot" class="mascot-logo">
+            <p class="motto">"Fear the bull - Respect the game" #Raidem</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-users"></i> Team Roster</h2>
+            <div class="player-grid">
+                <!-- FORWARDS (1-8) -->
+                <!-- Front Row -->
+                <div class="player-card">
+                    <img src="images/players/joseph.jpg" alt="Joseph Omondi - Loosehead Prop">
+                    <p>Joseph Omondi<br><em>Loosehead Prop</em></p>
+                    <p>#1</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/calvince.jpg" alt="Calvince Otieno - Hooker">
+                    <p>Calvince Otieno<br><em>Hooker</em></p>
+                    <p>#2</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/mutuku.jpg" alt="Mutuku Dennis - Tighthead Prop">
+                    <p>Mutuku Dennis<br><em>Tighthead Prop</em></p>
+                    <p>#3</p>
+                </div>
+
+                <!-- Second Row (Locks) -->
+                <div class="player-card">
+                    <img src="images/players/ezra.jpg" alt="Ezra - Lock">
+                    <p>Ezra<br><em>Lock</em></p>
+                    <p>#4</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/javan.jpg" alt="Javan Juma - Lock">
+                    <p>Javan Juma<br><em>Lock</em></p>
+                    <p>#5</p>
+                </div>
+
+                <!-- Back Row (Flankers & No. 8) -->
+                <div class="player-card">
+                    <img src="images/players/smork.jpg" alt="Smork - Blindside Flanker">
+                    <p>Smork<br><em>Blindside Flanker</em></p>
+                    <p>#6</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/ghato.jpg" alt="Ghato - Openside Flanker">
+                    <p>Ghato<br><em>Openside Flanker</em></p>
+                    <p>#7</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/hillary.jpg" alt="Hillary Ouma - Eighthman">
+                    <p>Hillary Ouma<br><em>Eighthman</em></p>
+                    <p>#8</p>
+                </div>
+
+                <!-- BACKS (9-15) -->
+                <!-- Half-Backs -->
+                <div class="player-card">
+                    <img src="images/players/omar.jpg" alt="Omar Menza - Scrum Half">
+                    <p>Omar Menza<br><em>Scrum Half</em></p>
+                    <p>#9</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/pasi.jpg" alt="Samwel Odhiambo - Fly Half">
+                    <p>Samwel Odhiambo<br><em>Fly Half</em></p>
+                    <p>#10</p>
+                    <p><strong>Captain</strong></p>
+                </div>
+
+                <!-- Centers -->
+                <div class="player-card">
+                    <img src="images/players/godfrey.jpg" alt="Godfrey Onyango - Inside Centre">
+                    <p>Godfrey Onyango<br><em>Inside Centre</em></p>
+                    <p>#12</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/tbd.jpg" alt="TBD - Outside Centre">
+                    <p>TBD<br><em>Outside Centre</em></p>
+                    <p>#13</p>
+                </div>
+
+                <!-- Back Three -->
+                <div class="player-card">
+                    <img src="images/players/alpha.jpg" alt="Alpha - Left Wing">
+                    <p>Alpha<br><em>Left Wing</em></p>
+                    <p>#11</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/emmanuel.jpg" alt="Emmanuel Onchoke - Right Wing">
+                    <p>Emmanuel Onchoke<br><em>Right Wing</em></p>
+                    <p>#14</p>
+                </div>
+                <div class="player-card">
+                    <img src="images/players/tbd.jpg" alt="TBD - Fullback">
+                    <p>TBD<br><em>Fullback</em></p>
+                    <p>#15</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="far fa-calendar-alt"></i> Match Schedule</h2>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Opponent</th>
+                        <th>Location</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <t></t></td>
+                    </tr>
+                </tbody>
+            </table>
+            <img src="images/gallery/stadium.jpg" alt="Raidbulls Stadium" style="margin-top: 20px;">
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-chart-line"></i> Player Stats</h2>
+            <div style="text-align: center;">
+                <img src="images/trophy.jpg" alt="Player receiving award" style="max-width: 200px;">
+                <div class="stats-highlight"></div>
+                <div class="stats-highlight"></div>
+                <div class="stats-highlight"></div>
+                <div class="stats-highlight"></div>
+            </div>
+        </div>
+
+        <div class="section full-width">
+            <h2><i class="far fa-newspaper"></i> News Updates</h2>
+            <div class="news-item">
+                <h3>Raiders</h3>
+                <img src="images/victory.jpg" alt="Team celebrating victory" style="max-width: 500px;">
+                <p> #raiders</p>
+                <p><small></small></p>
+            </div>
+            <div class="news-item">
+                <h3>TEAM BEGINS SEVENS CONDITIONING</h3>
+                <p>The squad has begun specialized conditioning for upcoming sevens tournaments.</p>
+                <p><small></small></p>
+            </div>
+        </div>
+
+        <div class="section full-width">
+            <h2><i class="fas fa-camera"></i> Gallery</h2>
+            <div class="gallery">
+                <img src="images/gallery/match1.jpg" alt="Action from last match">
+                <img src="images/gallery/huddle.jpg" alt="Team huddle before game">
+                <img src="images/gallery/training.jpg" alt="Team training session">
+                <img src="images/gallery/snaps.jpg" alt="Team celebrations">
+                <img src="images/gallery/fans.jpg" alt="Passionate fans">
+                <img src="images/gallery/awards.jpg" alt="End of season awards">
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background: #0d5c0d; margin-top: 30px;">
+        <p>© 2025 RAIDBULLS Rugby Club | Contact: info@raidbulls.com | Follow us @Jooust_rugby</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image error handling
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    console.error("Image failed to load: " + this.src);
+                    this.style.border = "2px solid red";
+                    this.alt = "MISSING: " + this.alt;
+                    this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23222'/%3E%3Ctext x='50%' y='50%' font-size='12' fill='%23fff' text-anchor='middle' dominant-baseline='middle'%3EImage%20Missing%3C/text%3E%3C/svg%3E";
+                };
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
